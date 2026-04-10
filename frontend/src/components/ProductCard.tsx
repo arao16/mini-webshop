@@ -9,7 +9,7 @@ export const ProductCard = ({ product, onAddToBasket }: ProductCardProps) => {
   return (
     <div className="product-card">
       <div className="product-card-image">
-        <img src={product.image} alt={product.name} />
+        <img src={product.imageUrl} alt={product.name} />
       </div>
       <div className="product-card-body">
         <h3 className="product-card-title">{product.name}</h3>
