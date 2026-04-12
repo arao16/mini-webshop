@@ -1,13 +1,11 @@
 import { useEffect, useMemo, useState } from 'react';
-import { Product } from '../types';
 import { apiService } from '../services/api';
 import { ProductCard } from './ProductCard';
+import { Product } from '../types';
+import { useBasket } from '../context/BasketContext';
 
-interface ProductListingProps {
-  onAddToBasket: (product: Product) => void;
-}
-
-export const ProductListing = ({ onAddToBasket }: ProductListingProps) => {
+export const ProductListing = () => {
+  const { addToBasket } = useBasket();
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -113,7 +111,7 @@ export const ProductListing = ({ onAddToBasket }: ProductListingProps) => {
             <ProductCard
               key={product.id}
               product={product}
-              onAddToBasket={onAddToBasket}
+              onAddToBasket={addToBasket}
             />
           ))}
         </div>

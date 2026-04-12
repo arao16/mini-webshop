@@ -1,37 +1,7 @@
-import { BasketItem } from '../types';
-import { apiService } from '../services/api';
+import { useBasket } from '../context/BasketContext';
 
-interface ShoppingBasketProps {
-  items: BasketItem[];
-  onRemoveItem: (productId: string) => void;
-  onClearBasket: () => void;
-}
-
-export const ShoppingBasket = ({
-  items,
-  onRemoveItem,
-  onClearBasket,
-}: ShoppingBasketProps) => {
-  const totalPrice = items.reduce(
-    (sum, item) => sum + item.product.price * item.quantity,
-    0
-  );
-
-  const handleCheckout = async () => {
-    const purchaseData = {
-      items,
-      totalPrice,
-    };
-
-    try {
-      await apiService.submitPurchase(purchaseData);
-      alert('Purchase submitted successfully!');
-      onClearBasket();
-    } catch (error) {
-      alert('Failed to submit purchase. Please try again.');
-      console.error(error);
-    }
-  };
+export const ShoppingBasket = () => {
+  const { items, totalPrice, removeFromBasket, clearBasket, isSubmitting, statusMessage, submitPurchase } = useBasket();
 
   return (
     <aside className="shopping-basket">
@@ -54,7 +24,7 @@ export const ShoppingBasket = ({
               </div>
               <div className="basket-item-right">
                 <p className="basket-item-price">${(item.product.price * item.quantity)}</p>
-                <button className="button button-remove" onClick={() => onRemoveItem(item.product.id)}>
+                <button className="button button-remove" onClick={() => removeFromBasket(item.product.id)}>
                   Remove
                 </button>
               </div>
@@ -67,13 +37,20 @@ export const ShoppingBasket = ({
               <span>${totalPrice}</span>
             </div>
             <div className="basket-actions">
-              <button className="button button-primary" onClick={handleCheckout}>
-                Checkout
+              <button
+                className="button button-primary"
+                onClick={submitPurchase}
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? 'Processing…' : 'Checkout'}
               </button>
-              <button className="button button-secondary" onClick={onClearBasket}>
+              <button className="button button-secondary" onClick={clearBasket}>
                 Clear Basket
               </button>
             </div>
+            {statusMessage && (
+              <div className="basket-status-message">{statusMessage}</div>
+            )}
           </div>
         </div>
       )}
