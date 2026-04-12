@@ -33,4 +33,18 @@ public class ProductController {
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
+    @GetMapping("/search")
+    public List<Product> searchProducts(@RequestParam(required = false) String query) {
+        return productService.searchProducts(query);
+    }
+
+    @GetMapping("/categories")
+    public List<String> getCategories() {
+        return productService.getAllCategories();
+    }
+
+    @GetMapping("/brands")
+    public List<String> getBrands() {
+        return productService.getAllBrands();
+    }
 }
