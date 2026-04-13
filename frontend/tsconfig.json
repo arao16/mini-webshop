@@ -13,6 +13,7 @@
     "allowImportingTsExtensions": true,
     "resolveJsonModule": true,
     "noEmit": true,
+    "types": ["jest", "node"],
     "jsx": "react-jsx",
 
     /* Linting */
