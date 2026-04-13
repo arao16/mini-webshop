@@ -16,7 +16,7 @@ No additional installation required. Maven dependencies are managed automaticall
 Start the Spring Boot server:
 
 ```bash
-./mvnw spring-boot:run
+mvn spring-boot:run
 ```
 
 The API will be available at `http://localhost:8080` by default.
@@ -26,7 +26,7 @@ The API will be available at `http://localhost:8080` by default.
 Build the project:
 
 ```bash
-./mvnw clean package
+mvn clean package
 ```
 
 ## Project Structure

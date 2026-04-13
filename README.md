@@ -44,7 +44,7 @@ Full stack tech assignment with a React frontend and Spring Boot backend.
 
 ```bash
 cd backend
-./mvnw spring-boot:run
+mvn spring-boot:run
 ```
 
 Backend will start at `http://localhost:8080`.

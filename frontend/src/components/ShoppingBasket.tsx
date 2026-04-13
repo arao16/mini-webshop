@@ -27,9 +27,8 @@ export const ShoppingBasket = ({
       await apiService.submitPurchase(purchaseData);
       alert('Purchase submitted successfully!');
       onClearBasket();
-    } catch (error) {
+    } catch {
       alert('Failed to submit purchase. Please try again.');
-      console.error(error);
     }
   };
 
