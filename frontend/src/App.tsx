@@ -12,7 +12,6 @@ function App() {
     const savedBasket = storageService.getBasket();
     setBasketItems(savedBasket.items);
     setIsLoaded(true);
-    console.log('basket items loaded from localStorage:', savedBasket.items);
   }, []);
 
   useEffect(() => {

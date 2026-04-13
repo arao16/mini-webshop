@@ -22,10 +22,10 @@ export const ProductListing = ({ onAddToBasket }: ProductListingProps) => {
         setProducts(data);
         setError(null);
         setLoading(false);
-      } catch (err) {
+      } catch {
         setError('Failed to load products. Please try again later.');
+      } finally {
         setLoading(false);
-        console.error(err);
       }
     };
 
