@@ -1,6 +1,6 @@
 import { Product, PurchaseRequest } from '../types';
 
-const API_BASE_URL = '/api';
+const API_BASE_URL = 'http://localhost:8080/api';
 
 export const apiService = {
   async getProducts(): Promise<Product[]> {
